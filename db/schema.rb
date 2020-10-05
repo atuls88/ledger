@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_174209) do
+ActiveRecord::Schema.define(version: 2020_10_05_015022) do
 
   create_table "ledgers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2020_10_03_174209) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["ledger_id"], name: "index_transactions_on_ledger_id"
+    t.index ["type", "date"], name: "index_transactions_on_type_and_date"
   end
 
 end

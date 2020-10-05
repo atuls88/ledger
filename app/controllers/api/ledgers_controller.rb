@@ -1,14 +1,5 @@
 class Api::LedgersController < ApplicationController
-	def index
-		ledgers = Ledger.order("created_at DESC")
-		render json: {status: 'SUCCESS', message:'Laoded ledgers', data: ledgers}, status: :ok
-	end
-
-	def show
-		ledger = Ledger.find(params[:id])
-		render json: {status: 'SUCCESS', message:'Laoded ledger', data: ledger}, status: :ok
-	end
-
+	
 	def create
 		ledger = Ledger.new(ledger_params)
 		if ledger.save
@@ -18,39 +9,19 @@ class Api::LedgersController < ApplicationController
 		end
 	end
 
-	def destroy
-		ledger = Ledger.find(params[:id])
-		ledger.destroy
-		render json: {status: 'SUCCESS', message:'Deleted ledger', data: ledger}, status: :ok
-	end
-
-	def update
-		ledger = Ledger.find(params[:id])
-		if ledger.update(ledger_params)
-			render json: {status: 'SUCCESS', message:'Updated ledger', data: ledger}, status: :ok
-		else
-			render json: {status: 'ERROR', message:'Ledger not updated', data: ledger.errors}, status: :unprocessable_entity
-		end
-	end
-
 	def get_ledger_totals
-		ledger_transactions = Ledger.where(id: params[:ledger_id]).includes(:transactions)
-		total_expenses = ledger_transactions.first.transactions.expense
-		expenses = total_expenses.by_year(params[:year]).by_month(params[:month])
-		total_revenue = ledger_transactions.first.transactions.revenue
-		revenues = total_revenue.by_year(params[:year]).by_month(params[:month])
-		total_expense = expenses.sum(&:amount)
-		total_revenue = revenues.sum(&:amount)
-		ledger_totals = {:expenses => total_expense, :total_revenue => total_revenue}
+		expenses = Transaction.get_total_expense_by_date(params[:ledger_id],params[:year],params[:month])
+		revenues = Transaction.get_total_revenue_by_date(params[:ledger_id],params[:year],params[:month])
+		ledger_totals = {:total_expenses => expenses.sum(&:amount), :total_revenue => revenues.sum(&:amount)}
 		render json: {status: 'SUCCESS', message:'Laoded ledgers', data: ledger_totals}, status: :ok
 	end
 
 	def get_current_balance
-		ledger_transactions = Ledger.where(id: params[:ledger_id]).includes(:transactions)
-		starting_balance = ledger_transactions.first.starting_balance
-		expense = ledger_transactions.first.transactions.expense
-		revenue = ledger_transactions.first.transactions.revenue
-		current_balance = starting_balance + revenue.sum(&:amount) - expense.sum(&:amount)
+		ledger = Ledger.find(params[:ledger_id])
+		starting_balance = ledger.starting_balance
+		transactions_expenses = Transaction.get_total_expense(params[:ledger_id],params[:year],params[:month])
+		transactions_revenues = Transaction.get_total_revenue(params[:ledger_id],params[:year],params[:month])
+		current_balance = starting_balance + transactions_revenues.sum(&:amount) - transactions_expenses.sum(&:amount)
 		render json: {status: 'SUCCESS', message:'Laoded ledgers', data: current_balance}, status: :ok
 	end
 

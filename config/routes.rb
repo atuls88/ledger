@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   			get 'get_current_balance'
   		end
   	end
-	resources :transactions do 
+	  resources :transactions do 
 	  	collection do
 		    get 'list_transactions'
 		    post 'create_transaction'
-		end
-	end
+		  end
+	  end
   end
 end

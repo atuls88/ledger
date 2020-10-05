@@ -1,19 +1,6 @@
 class Api::TransactionsController < ApplicationController
-	def index
- 		transactions = Transaction.order("created_at DESC")
- 		render json: {status: 'SUCCESS', message:'Transactions ledgers', data: transactions}, status: :ok
- 	end
 
  	def create
- 		transaction = Transaction.new(transaction_params)
- 		if transaction.save
-			render json: {status: 'SUCCESS', message:'Saved transaction', data: transaction}, status: :ok
-		else
-			render json: {status: 'ERROR', message:'Ledger not saved', data: transaction.errors}, status: :unprocessable_entity
-		end
- 	end
-
- 	def create_transaction
  		ledger = Ledger.find(params[:ledger_id])
  		transaction = Transaction.new(transaction_params)
  		ledger.transactions << transaction

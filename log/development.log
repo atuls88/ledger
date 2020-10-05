@@ -3308,3 +3308,622 @@ Processing by Api::LedgersController#get_current_balance as */*
 Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 1.4ms | Allocations: 3665)
 
 
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('3117724155305729550', 0)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to AddIndexToTransaction (20201005015022)
+  [1m[35m (211.9ms)[0m  [1m[35mCREATE  INDEX `index_transactions_on_ledger_id`  ON `transactions` (`ledger_id`) [0m
+  [1m[35m (179.9ms)[0m  [1m[35mCREATE  INDEX `index_transactions_on_type_and_date`  ON `transactions` (`type`, `date`) [0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20201005015022')[0m
+  [1m[35m (56.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT RELEASE_LOCK('3117724155305729550')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started POST "/api/ledgers" for ::1 at 2020-10-05 07:28:57 +0530
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::LedgersController#create as */*
+  Parameters: {"name"=>"Second Ledger", "starting_balance"=>100.0, "ledger"=>{"name"=>"Second Ledger", "starting_balance"=>100.0}}
+[31mUnpermitted parameter: :ledger[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/ledgers_controller.rb:5:in `create'
+  [1m[36mLedger Create (0.3ms)[0m  [1m[32mINSERT INTO `ledgers` (`name`, `starting_balance`, `created_at`, `updated_at`) VALUES ('Second Ledger', 100.0, '2020-10-05 01:58:57.162526', '2020-10-05 01:58:57.162526')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:5:in `create'
+  [1m[35m (38.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/ledgers_controller.rb:5:in `create'
+Completed 200 OK in 49ms (Views: 0.5ms | ActiveRecord: 40.1ms | Allocations: 5599)
+
+
+Started POST "/api/transactions/create" for ::1 at 2020-10-05 07:29:58 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/api/transactions/create"):
+  
+actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.6) lib/puma/configuration.rb:228:in `call'
+puma (4.3.6) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.6) lib/puma/server.rb:472:in `process_client'
+puma (4.3.6) lib/puma/server.rb:328:in `block in run'
+puma (4.3.6) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/api/transactions/create" for ::1 at 2020-10-05 07:30:24 +0530
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/api/transactions/create"):
+  
+actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.6) lib/puma/configuration.rb:228:in `call'
+puma (4.3.6) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.6) lib/puma/server.rb:472:in `process_client'
+puma (4.3.6) lib/puma/server.rb:328:in `block in run'
+puma (4.3.6) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/api/transactions/create" for ::1 at 2020-10-05 07:30:26 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/api/transactions/create"):
+  
+actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.6) lib/puma/configuration.rb:228:in `call'
+puma (4.3.6) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.6) lib/puma/server.rb:472:in `process_client'
+puma (4.3.6) lib/puma/server.rb:328:in `block in run'
+puma (4.3.6) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+DEPRECATION WARNING: Using `bin/rake routes` is deprecated and will be removed in Rails 6.1. Use `bin/rails routes` instead.
+ (called from block in execute at /home/atul/.rvm/rubies/ruby-2.7.1/lib/ruby/gems/2.7.0/gems/rake-13.0.1/lib/rake/task.rb:281)
+Started POST "/api/transactions/create" for ::1 at 2020-10-05 07:31:58 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/api/transactions/create"):
+  
+actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.6) lib/puma/configuration.rb:228:in `call'
+puma (4.3.6) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.6) lib/puma/server.rb:472:in `process_client'
+puma (4.3.6) lib/puma/server.rb:328:in `block in run'
+puma (4.3.6) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/api/transactions/create" for ::1 at 2020-10-05 07:32:36 +0530
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/api/transactions/create"):
+  
+actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.6) lib/puma/configuration.rb:228:in `call'
+puma (4.3.6) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.6) lib/puma/server.rb:472:in `process_client'
+puma (4.3.6) lib/puma/server.rb:328:in `block in run'
+puma (4.3.6) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/api/transactions/list_transactions?ledger_id=11" for ::1 at 2020-10-05 07:35:44 +0530
+Processing by Api::TransactionsController#list_transactions as */*
+  Parameters: {"ledger_id"=>"11", "transaction"=>{}}
+  [1m[36mLedger Load (0.3ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m
+  ↳ app/controllers/api/transactions_controller.rb:15:in `list_transactions'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 ORDER BY created_at DESC[0m
+  ↳ app/controllers/api/transactions_controller.rb:17:in `list_transactions'
+Completed 200 OK in 17ms (Views: 1.9ms | ActiveRecord: 2.4ms | Allocations: 7474)
+
+
+Started POST "/api/transactions/create" for ::1 at 2020-10-05 07:36:20 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/api/transactions/create"):
+  
+actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.6) lib/puma/configuration.rb:228:in `call'
+puma (4.3.6) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.6) lib/puma/server.rb:472:in `process_client'
+puma (4.3.6) lib/puma/server.rb:328:in `block in run'
+puma (4.3.6) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/api/transactions/create" for ::1 at 2020-10-05 07:37:33 +0530
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for Api::TransactionsController):
+  
+actionpack (6.0.3.3) lib/abstract_controller/base.rb:131:in `process'
+actionpack (6.0.3.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.0.3.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.0.3.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.0.3.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.3.3) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3.3) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.3.3) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.3) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.6) lib/puma/configuration.rb:228:in `call'
+puma (4.3.6) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.6) lib/puma/server.rb:472:in `process_client'
+puma (4.3.6) lib/puma/server.rb:328:in `block in run'
+puma (4.3.6) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/api/transactions/create" for ::1 at 2020-10-05 07:37:43 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/api/transactions/create"):
+  
+actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.6) lib/puma/configuration.rb:228:in `call'
+puma (4.3.6) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.6) lib/puma/server.rb:472:in `process_client'
+puma (4.3.6) lib/puma/server.rb:328:in `block in run'
+puma (4.3.6) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/api/transactions/create" for ::1 at 2020-10-05 07:38:58 +0530
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/api/transactions/create"):
+  
+actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.6) lib/puma/configuration.rb:228:in `call'
+puma (4.3.6) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.6) lib/puma/server.rb:472:in `process_client'
+puma (4.3.6) lib/puma/server.rb:328:in `block in run'
+puma (4.3.6) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/api/transactions/create_transaction" for ::1 at 2020-10-05 07:40:21 +0530
+Processing by Api::TransactionsController#create_transaction as */*
+  Parameters: {"ledger_id"=>11, "amount"=>26.3, "date"=>"2020-02-25", "type"=>"Expense", "description"=>"Note books", "transaction"=>{"ledger_id"=>11, "amount"=>26.3, "date"=>"2020-02-25", "type"=>"Expense", "description"=>"Note books"}}
+  [1m[36mLedger Load (0.3ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `create_transaction'
+[31mUnpermitted parameters: :ledger_id, :transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/transactions_controller.rb:6:in `create_transaction'
+  [1m[36mExpense Create (0.3ms)[0m  [1m[32mINSERT INTO `transactions` (`ledger_id`, `amount`, `date`, `type`, `description`, `created_at`, `updated_at`) VALUES (11, 26.3, '2020-02-25', 'Expense', 'Note books', '2020-10-05 02:10:21.794217', '2020-10-05 02:10:21.794217')[0m
+  ↳ app/controllers/api/transactions_controller.rb:6:in `create_transaction'
+  [1m[35m (30.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/transactions_controller.rb:6:in `create_transaction'
+Completed 200 OK in 69ms (Views: 0.4ms | ActiveRecord: 33.3ms | Allocations: 18527)
+
+
+Started GET "/api/transactions/list_transactions?ledger_id=11" for ::1 at 2020-10-05 07:40:50 +0530
+Processing by Api::TransactionsController#list_transactions as */*
+  Parameters: {"ledger_id"=>"11", "transaction"=>{}}
+  [1m[36mLedger Load (0.4ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m
+  ↳ app/controllers/api/transactions_controller.rb:15:in `list_transactions'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 ORDER BY created_at DESC[0m
+  ↳ app/controllers/api/transactions_controller.rb:17:in `list_transactions'
+Completed 200 OK in 6ms (Views: 3.0ms | ActiveRecord: 0.9ms | Allocations: 1837)
+
+
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=11&year=2020&month=02" for ::1 at 2020-10-05 07:41:01 +0530
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"11", "year"=>"2020", "month"=>"02"}
+  [1m[36mLedger Load (0.4ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 ORDER BY `ledgers`.`id` ASC LIMIT 1[0m
+  ↳ app/controllers/api/ledgers_controller.rb:14:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11[0m
+  ↳ app/controllers/api/ledgers_controller.rb:14:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:18:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 AND `transactions`.`type` = 'Revenue' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:19:in `get_ledger_totals'
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 1.8ms | Allocations: 4309)
+
+
+Started GET "/api/ledgers/get_current_balance?ledger_id=11" for ::1 at 2020-10-05 07:41:10 +0530
+Processing by Api::LedgersController#get_current_balance as */*
+  Parameters: {"ledger_id"=>"11"}
+  [1m[36mLedger Load (0.4ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 ORDER BY `ledgers`.`id` ASC LIMIT 1[0m
+  ↳ app/controllers/api/ledgers_controller.rb:26:in `get_current_balance'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11[0m
+  ↳ app/controllers/api/ledgers_controller.rb:26:in `get_current_balance'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 AND `transactions`.`type` = 'Revenue'[0m
+  ↳ app/controllers/api/ledgers_controller.rb:29:in `get_current_balance'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 AND `transactions`.`type` = 'Expense'[0m
+  ↳ app/controllers/api/ledgers_controller.rb:29:in `get_current_balance'
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 1.7ms | Allocations: 3485)
+
+
+Started POST "/api/transactions/create_transaction" for ::1 at 2020-10-05 07:42:05 +0530
+Processing by Api::TransactionsController#create_transaction as */*
+  Parameters: {"ledger_id"=>11, "amount"=>"dsfdsf", "date"=>"2020-02-25", "type"=>"Expense", "description"=>"Note books", "transaction"=>{"ledger_id"=>11, "amount"=>"dsfdsf", "date"=>"2020-02-25", "type"=>"Expense", "description"=>"Note books"}}
+  [1m[36mLedger Load (0.3ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `create_transaction'
+[31mUnpermitted parameters: :ledger_id, :transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/transactions_controller.rb:6:in `create_transaction'
+  [1m[36mExpense Create (0.3ms)[0m  [1m[32mINSERT INTO `transactions` (`ledger_id`, `amount`, `date`, `type`, `description`, `created_at`, `updated_at`) VALUES (11, 0.0, '2020-02-25', 'Expense', 'Note books', '2020-10-05 02:12:05.223239', '2020-10-05 02:12:05.223239')[0m
+  ↳ app/controllers/api/transactions_controller.rb:6:in `create_transaction'
+  [1m[35m (89.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/transactions_controller.rb:6:in `create_transaction'
+Completed 200 OK in 103ms (Views: 1.0ms | ActiveRecord: 90.0ms | Allocations: 3860)
+
+
+Started POST "/api/transactions/create_transaction" for ::1 at 2020-10-05 07:44:48 +0530
+Processing by Api::TransactionsController#create_transaction as */*
+  Parameters: {"ledger_id"=>11, "amount"=>"yrtyty", "date"=>"2020-02-25", "type"=>"Expense", "description"=>"Note books", "transaction"=>{"ledger_id"=>11, "amount"=>"yrtyty", "date"=>"2020-02-25", "type"=>"Expense", "description"=>"Note books"}}
+  [1m[36mLedger Load (0.3ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `create_transaction'
+[31mUnpermitted parameters: :ledger_id, :transaction[0m
+Completed 422 Unprocessable Entity in 69ms (Views: 0.2ms | ActiveRecord: 2.7ms | Allocations: 15459)
+
+
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=11&year=2020&month=02" for ::1 at 2020-10-05 08:13:08 +0530
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"11", "year"=>"2020", "month"=>"02"}
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 1838)
+
+
+  
+NameError (uninitialized constant Api::LedgersController::TransactionService):
+  
+app/controllers/api/ledgers_controller.rb:18:in `get_ledger_totals'
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=11&year=2020&month=02" for ::1 at 2020-10-05 08:29:42 +0530
+  [1m[35m (0.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"11", "year"=>"2020", "month"=>"02"}
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 1811)
+
+
+  
+NameError (uninitialized constant Api::LedgersController::TransactionService):
+  
+app/controllers/api/ledgers_controller.rb:18:in `get_ledger_totals'
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=11&year=2020&month=02" for ::1 at 2020-10-05 08:35:38 +0530
+  [1m[35m (0.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"11", "year"=>"2020", "month"=>"02"}
+  [1m[36mLedger Load (0.4ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:22:in `get_total_revenue'
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:22:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 AND `transactions`.`type` = 'Revenue' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:23:in `get_ledger_totals'
+Completed 200 OK in 42ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 16109)
+
+
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=10&year=2020&month=02" for ::1 at 2020-10-05 08:35:52 +0530
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"10", "year"=>"2020", "month"=>"02"}
+  [1m[36mLedger Load (0.4ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:22:in `get_total_revenue'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:22:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Revenue' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:23:in `get_ledger_totals'
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 1.3ms | Allocations: 3134)
+
+
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=11&year=2020&month=02" for ::1 at 2020-10-05 08:36:33 +0530
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"11", "year"=>"2020", "month"=>"02"}
+  [1m[36mLedger Load (0.4ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:22:in `get_total_revenue'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:22:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 AND `transactions`.`type` = 'Revenue' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:23:in `get_ledger_totals'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 1.3ms | Allocations: 3174)
+
+
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=10&year=2020&month=02" for ::1 at 2020-10-05 08:38:38 +0530
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"10", "year"=>"2020", "month"=>"02"}
+  [1m[36mLedger Load (0.3ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:22:in `get_total_revenue'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 2.1ms | Allocations: 7703)
+
+
+  
+NoMethodError (undefined method `by_year' for #<String:0x0000559fdd062890>):
+  
+app/controllers/api/ledgers_controller.rb:21:in `get_ledger_totals'
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=10&year=2020&month=02" for ::1 at 2020-10-05 08:38:56 +0530
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"10", "year"=>"2020", "month"=>"02"}
+  [1m[36mLedger Load (0.3ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:22:in `get_total_revenue'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:22:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Revenue' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:23:in `get_ledger_totals'
+Completed 200 OK in 45ms (Views: 0.2ms | ActiveRecord: 3.3ms | Allocations: 16037)
+
+
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=10&year=2020&month=02" for ::1 at 2020-10-05 08:40:09 +0530
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"10", "year"=>"2020", "month"=>"02"}
+  [1m[36mLedger Load (0.3ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:22:in `get_total_revenue'
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Revenue'[0m
+  ↳ app/models/transaction.rb:25:in `get_total_revenue'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:22:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Revenue' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:23:in `get_ledger_totals'
+Completed 200 OK in 47ms (Views: 0.2ms | ActiveRecord: 3.2ms | Allocations: 20809)
+
+
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=10&year=2020&month=02" for ::1 at 2020-10-05 08:40:34 +0530
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"10", "year"=>"2020", "month"=>"02"}
+  [1m[36mLedger Load (0.3ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:22:in `get_total_revenue'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Revenue'[0m
+  ↳ app/models/transaction.rb:25:in `get_total_revenue'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:22:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Revenue' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:23:in `get_ledger_totals'
+Completed 200 OK in 98ms (Views: 0.2ms | ActiveRecord: 3.8ms | Allocations: 20829)
+
+
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=10&year=2020&month=01" for ::1 at 2020-10-05 08:40:59 +0530
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"10", "year"=>"2020", "month"=>"01"}
+  [1m[36mLedger Load (0.4ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:22:in `get_total_revenue'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Revenue'[0m
+  ↳ app/models/transaction.rb:25:in `get_total_revenue'
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '01')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:22:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Revenue' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '01')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:23:in `get_ledger_totals'
+Completed 200 OK in 21ms (Views: 0.2ms | ActiveRecord: 1.9ms | Allocations: 3847)
+
+
+Started GET "/api/ledgers/get_current_balance?ledger_id=11" for ::1 at 2020-10-05 08:44:05 +0530
+Processing by Api::LedgersController#get_current_balance as */*
+  Parameters: {"ledger_id"=>"11"}
+Completed 500 Internal Server Error in 105ms (ActiveRecord: 0.0ms | Allocations: 60399)
+
+
+  
+NameError (undefined local variable or method `ledger_id' for #<Api::LedgersController:0x00007f88446bd108>
+Did you mean?  ledger):
+  
+app/controllers/api/ledgers_controller.rb:22:in `get_current_balance'
+Started GET "/api/ledgers/get_current_balance?ledger_id=11" for ::1 at 2020-10-05 08:44:37 +0530
+Processing by Api::LedgersController#get_current_balance as */*
+  Parameters: {"ledger_id"=>"11"}
+  [1m[36mLedger Load (0.3ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m
+  ↳ app/controllers/api/ledgers_controller.rb:22:in `get_current_balance'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:22:in `get_total_revenue'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 AND `transactions`.`type` = 'Revenue'[0m
+  ↳ app/controllers/api/ledgers_controller.rb:26:in `get_current_balance'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 11 AND `transactions`.`type` = 'Expense'[0m
+  ↳ app/controllers/api/ledgers_controller.rb:26:in `get_current_balance'
+Completed 200 OK in 39ms (Views: 0.2ms | ActiveRecord: 3.2ms | Allocations: 16325)
+
+
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=10&year=2020&month=01" for ::1 at 2020-10-05 08:52:08 +0530
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"10", "year"=>"2020", "month"=>"01"}
+  [1m[36mLedger Load (0.7ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:27:in `get_total_revenue'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '01')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:17:in `get_ledger_totals'
+Completed 500 Internal Server Error in 141ms (ActiveRecord: 1.1ms | Allocations: 74873)
+
+
+  
+NameError (undefined local variable or method `evenues' for #<Api::LedgersController:0x0000559fdde48a40>
+Did you mean?  revenues):
+  
+app/controllers/api/ledgers_controller.rb:17:in `get_ledger_totals'
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=10&year=2020&month=01" for ::1 at 2020-10-05 08:53:01 +0530
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"10", "year"=>"2020", "month"=>"01"}
+  [1m[36mLedger Load (0.3ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:27:in `get_total_revenue'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '01')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:17:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Revenue' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '01')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:17:in `get_ledger_totals'
+Completed 200 OK in 61ms (Views: 0.3ms | ActiveRecord: 3.7ms | Allocations: 20200)
+
+
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=10&year=2020&month=02" for ::1 at 2020-10-05 08:53:08 +0530
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"10", "year"=>"2020", "month"=>"02"}
+  [1m[36mLedger Load (0.4ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.0ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:27:in `get_total_revenue'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:17:in `get_ledger_totals'
+  [1m[36mTransaction Load (1.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Revenue' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '02')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:17:in `get_ledger_totals'
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 2.5ms | Allocations: 3132)
+
+
+Started GET "/api/ledgers/get_ledger_totals?ledger_id=10&year=2020&month=01" for ::1 at 2020-10-05 08:53:12 +0530
+Processing by Api::LedgersController#get_ledger_totals as */*
+  Parameters: {"ledger_id"=>"10", "year"=>"2020", "month"=>"01"}
+  [1m[36mLedger Load (0.4ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m
+  ↳ app/models/transaction.rb:16:in `get_total_expense'
+  [1m[36mCACHE Ledger Load (0.1ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 10 LIMIT 1[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/models/transaction.rb:27:in `get_total_revenue'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Expense' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '01')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:17:in `get_ledger_totals'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT `transactions`.* FROM `transactions` WHERE `transactions`.`ledger_id` = 10 AND `transactions`.`type` = 'Revenue' AND (extract(year  from date) = '2020') AND (extract(month  from date) = '01')[0m
+  ↳ app/controllers/api/ledgers_controller.rb:17:in `get_ledger_totals'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 3203)
+
+
+Started POST "/api/transactions/" for ::1 at 2020-10-05 08:56:03 +0530
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"ledger_id"=>11, "amount"=>"34.01", "date"=>"2020-02-25", "type"=>"Revenue", "description"=>"Note books", "transaction"=>{"ledger_id"=>11, "amount"=>"34.01", "date"=>"2020-02-25", "type"=>"Revenue", "description"=>"Note books"}}
+  [1m[36mLedger Load (0.3ms)[0m  [1m[34mSELECT `ledgers`.* FROM `ledgers` WHERE `ledgers`.`id` = 11 LIMIT 1[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `create'
+[31mUnpermitted parameters: :ledger_id, :transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/transactions_controller.rb:6:in `create'
+  [1m[36mRevenue Create (0.3ms)[0m  [1m[32mINSERT INTO `transactions` (`ledger_id`, `amount`, `date`, `type`, `description`, `created_at`, `updated_at`) VALUES (11, 34.01, '2020-02-25', 'Revenue', 'Note books', '2020-10-05 03:26:03.637199', '2020-10-05 03:26:03.637199')[0m
+  ↳ app/controllers/api/transactions_controller.rb:6:in `create'
+  [1m[35m (41.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/transactions_controller.rb:6:in `create'
+Completed 200 OK in 82ms (Views: 1.1ms | ActiveRecord: 44.2ms | Allocations: 15683)
+
+
